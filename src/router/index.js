@@ -4,6 +4,9 @@ import Home from '@/pages/Home'
 import Organization from '@/pages/Organization'
 import Registration from '@/pages/Registration'
 import Login from '@/pages/Login'
+import Project from '@/pages/Projects'
+import EndPoints from '@/pages/EndPoints'
+import CreatePoint from '@/pages/CreatePoint'
 
 Vue.use(Router)
 
@@ -24,6 +27,18 @@ export default new Router({
     {
       path: '/login',
       component: Login
+    },
+    {
+      path: '/projects',
+      component: Project
+    },
+    {
+      path: '/endpoints',
+      component: EndPoints
+    },
+    {
+      path: '/createEndPoint',
+      component: CreatePoint
     }
   ],
   mode: 'history'

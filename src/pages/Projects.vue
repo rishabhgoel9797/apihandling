@@ -9,10 +9,10 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4" v-for="project in projectsCount" :key="project">
+      <div class="col-md-4" v-for="project in getAllProjects" :key="project.projectId">
         <div class="panel panel-info">
           <div class="panel-body projectBody">
-            Project {{project}}
+            {{project.projectName}}
           </div>
         </div>
       </div>
@@ -29,16 +29,19 @@
             <form>
               <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" name="projectName" placeholder="Enter Project Name">
+                <input type="text" class="form-control" name="projectName" placeholder="Enter Project Name"
+                v-model="name">
               </div>
               <div class="form-group">
                 <label>Description</label>
-                <textarea type="text" class="form-control" rows="5" name="projectDescription" placeholder="Enter Description"></textarea>
+                <textarea type="text" class="form-control" rows="5" name="projectDescription" placeholder="Enter Description"
+                v-model="description"></textarea>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal"
+            @click="createProject">Create</button>
           </div>
         </div>
       </div>

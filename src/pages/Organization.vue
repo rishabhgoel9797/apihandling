@@ -9,10 +9,10 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4" v-for="organization in organizationsCount" :key="organization">
+      <div class="col-md-4" v-for="organization in getAllOrganizations" :key="organization.organisationId">
         <div class="panel panel-info">
           <div class="panel-body organizationBody">
-            Organization {{organization}}
+            <p @click="getProjects(organization.organisationId)">{{organization.organisationName}}</p>
           </div>
         </div>
       </div>
@@ -65,6 +65,9 @@
   color: #039be5;
   font-size: 40px;
   display: block;
+  cursor: pointer;
+}
+p {
   cursor: pointer;
 }
 </style>

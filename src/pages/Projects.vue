@@ -9,7 +9,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4" v-for="project in projectsCount">
+      <div class="col-md-4" v-for="project in projectsCount" :key="project">
         <div class="panel panel-info">
           <div class="panel-body projectBody">
             Project {{project}}

@@ -29,16 +29,16 @@
             <form>
               <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" name="organizationName">
+                <input type="text" class="form-control" name="organizationName" v-model="name">
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label>Description</label>
                 <textarea type="text" class="form-control" rows="5" name="organizationDescription"></textarea>
-              </div>
+              </div> -->
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
+            <button @click="organization" type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
           </div>
         </div>
       </div>

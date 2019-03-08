@@ -5,7 +5,7 @@
       <button type="button" class="btn btn-primary pull-right" @click="createEndPoint">
         <i class="fa fa-plus add" aria-hidden="true"></i>
         Create Endpoint
-        </button>
+      </button>
     </div>
     <div class="endpoints_container">
       <div class="endpoints alert alert-info">
@@ -21,7 +21,8 @@
         <span class="endpoint_type">DELETE</span>/blibli/deleteProducts
       </div>
       <div class="endpoints alert alert-info">
-        <span class="endpoint_type">GET</span>/blibli/getProduct/{productId}
+        <span class="endpoint_type">GET</span>
+        /blibli/getProduct/{productId}
       </div>
     </div>
     <!-- EndPoint Modal -->
@@ -50,7 +51,7 @@
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script src="./js/end-points.js"></script>

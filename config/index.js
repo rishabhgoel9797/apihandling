@@ -17,6 +17,13 @@ module.exports = {
         pathRewrite: {
           '^/users': ''
         }
+      },
+      '/organisation': {
+        target: 'http://10.177.68.231:8080/organisation',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/organisation': ''
+        }
       }
     },
 

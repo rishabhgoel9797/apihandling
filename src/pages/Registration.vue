@@ -13,6 +13,7 @@
                 id="name"
                 placeholder="Enter name"
                 name="name"
+                v-model="name"
               >
             </div>
           </div>
@@ -25,6 +26,7 @@
                 id="email"
                 placeholder="Enter email"
                 name="email"
+                v-model="emailId"
               >
             </div>
           </div>
@@ -37,12 +39,13 @@
                 id="pwd"
                 placeholder="Enter password"
                 name="pwd"
+                v-model="password"
               >
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-primary">Register</button>
+              <button type="button" class="btn btn-primary" @click="addUser">Register</button>
             </div>
           </div>
         </form>

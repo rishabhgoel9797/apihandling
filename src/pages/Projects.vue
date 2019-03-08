@@ -19,7 +19,7 @@
     </div>
     <!-- Project Modal -->
     <div id="projectModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -29,11 +29,11 @@
             <form>
               <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" name="projectName">
+                <input type="text" class="form-control" name="projectName" placeholder="Enter Project Name">
               </div>
               <div class="form-group">
                 <label>Description</label>
-                <textarea type="text" class="form-control" rows="5" name="projectDescription"></textarea>
+                <textarea type="text" class="form-control" rows="5" name="projectDescription" placeholder="Enter Description"></textarea>
               </div>
             </form>
           </div>

@@ -2,6 +2,10 @@
   <div class="container">
     <div class="projectName">
       Blibli
+      <button type="button" class="btn btn-primary pull-right" @click="createEndPoint">
+        <i class="fa fa-plus add" aria-hidden="true"></i>
+        Create Endpoint
+        </button>
     </div>
     <div class="endpoints_container">
       <div class="endpoints alert alert-info">
@@ -18,6 +22,32 @@
       </div>
       <div class="endpoints alert alert-info">
         <span class="endpoint_type">GET</span>/blibli/getProduct/{productId}
+      </div>
+    </div>
+    <!-- EndPoint Modal -->
+    <div id="endpointModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Create New Endpoint</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" name="projectName">
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea type="text" class="form-control" rows="5" name="projectDescription"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>  

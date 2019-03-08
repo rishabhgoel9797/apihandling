@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/pages/Home'
 import Project from '@/pages/Projects'
 import EndPoints from '@/pages/EndPoints'
+import CreatePoint from '@/pages/CreatePoint'
 
 Vue.use(Router)
 
@@ -19,6 +20,10 @@ export default new Router({
     {
       path: '/endpoints',
       component: EndPoints
+    },
+    {
+      path: '/createEndPoint',
+      component: CreatePoint
     }
   ],
   mode: 'history'

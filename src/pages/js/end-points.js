@@ -7,6 +7,9 @@ export default {
       ]
     }
   },
-  created () {
+  methods: {
+    createEndPoint () {
+      this.$router.push('createEndPoint')
+    }
   }
 }

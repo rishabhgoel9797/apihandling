@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     {{initilization}}
-    <h3>Click on End Point to make it Faavourite<i class="fa fa-star favourite-star" aria-hidden="true"></i></h3>
+    <h3>Click on End Point to make it Favourite<i class="fa fa-star favourite-star" aria-hidden="true"></i></h3>
+      <button type="button" class="btn btn-primary pull-right" @click="subscribeFunc()">Subscribe</button>
      <div id="favourite"></div>
      <div id="points">
      </div>

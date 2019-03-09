@@ -13,8 +13,11 @@
       </button>
     </div>
     <div class="endpoints_container" v-for="endpoint in getAllEndPoints" :key="endpoint.id">
-      <div @click="singleEndPoint(endpoint.id)" class="endpoints alert alert-info hover">
+      <div @click="singleEndPoint(endpoint.id)" class="endpoints alert alert-info hover  col-md-10">
         <span class="endpoint_type">{{endpoint.requestMethod.toUpperCase()}}</span>{{endpoint.endpointPath}}
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-warning btn-lg" @click="subscribe(endpoint.id)">Subscribe</button>
       </div>
     </div>
     <!-- Endpoint Modal -->

@@ -77,6 +77,11 @@ export default {
         count++
         e.stopPropagation()
       })
+    },
+    subscribeFunc () {
+      let endpointId = this.$route.params.endpointId
+      let request = {request: {endPointId: endpointId, fragmentPath: this.paths, subscriberId: localStorage.getItem('userId')}, tokenId: localStorage.getItem('emailId')}
+      this.$store.dispatch('subscribe', {request})
     }
   }
 }

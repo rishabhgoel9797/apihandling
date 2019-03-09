@@ -11,10 +11,13 @@
     "start": "npm run dev"
   },
   "dependencies": {
+    "autocomplete-vue": "^1.1.0",
+    "axios": "^0.18.0",
     "jquery": "^3.3.1",
     "vue": "^2.5.2",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
+    "vuejs-auto-complete": "^0.9.0",
     "vuex": "^3.1.0"
   },
   "devDependencies": {

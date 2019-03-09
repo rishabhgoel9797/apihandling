@@ -1,4 +1,11 @@
 import {mapGetters} from 'vuex'
+import Vue from 'vue'
+// import Autocomplete from 'vuejs-auto-complete'
+
+// Vue.use(Autocomplete)
+import AutocompleteVue from 'autocomplete-vue'
+
+Vue.component('autocomplete-vue', AutocompleteVue)
 
 export default {
   data () {
@@ -6,14 +13,19 @@ export default {
       projectsCount: 4,
       name: '',
       description: '',
-      orgId: this.$route.params.orgId
+      orgId: this.$route.params.orgId,
+      search: ''
     }
+  },
+  components: {
+    // Autocomplete
   },
   created () {
     this.getProjects()
+    this.getUsersInOrg()
   },
   computed: {
-    ...mapGetters(['getAllProjects'])
+    ...mapGetters(['getAllProjects', 'getOrgUsers'])
   },
   methods: {
     createProject () {
@@ -29,6 +41,21 @@ export default {
     },
     endpoints (projectId) {
       this.$router.push('/endpoints/' + projectId)
+    },
+    getUsersInOrg () {
+      let request = {tokenId: localStorage.getItem('emailId')}
+      let orgId = this.orgId
+      this.$store.dispatch('getUsers', {request, orgId})
+    },
+    addColab (id) {
+      for (var i = 0; i < this.getOrgUsers.length; i++) {
+        if (this.getOrgUsers[i].emailId === this.search) {
+          let request = {request: {projectId: id, role: 'NORMAL', userId: localStorage.getItem('userId')}, tokenId: localStorage.getItem('emailId')}
+          this.$store.dispatch('addColab', {request})
+        } else {
+          console.log('false')
+        }
+      }
     }
   }
 }

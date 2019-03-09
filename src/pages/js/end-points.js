@@ -32,6 +32,10 @@ export default {
     },
     singleEndPoint (endpointId) {
       router.push('/updateEndPoint/' + endpointId)
+    },
+    subscribe (id) {
+      let request = {request: {endPointId: id, subscriberId: localStorage.getItem('userId')}, tokenId: localStorage.getItem('emailId')}
+      this.$store.dispatch('addSubscription', {request})
     }
   }
 }

@@ -5,7 +5,8 @@ export default {
   data () {
     return {
       organizationsCount: 4,
-      name: ''
+      name: '',
+      search: ''
     }
   },
   created () {
@@ -26,6 +27,10 @@ export default {
     },
     getProjects (orgId) {
       this.$router.push('/projects/' + orgId)
+    },
+    addColab (id) {
+      let request = {request: {organisationId: id, role: 'NORMAL', userEmail: this.search}, tokenId: localStorage.getItem('emailId')}
+      this.$store.dispatch('addColabOrg', {request})
     }
   }
 }

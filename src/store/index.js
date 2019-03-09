@@ -6,6 +6,8 @@ import projectService from '@/api/projects'
 import endPointService from '@/api/endpoint'
 import endPointRequestService from '@/api/endpointRequest'
 import endPointResponseService from '@/api/endpointResponse'
+import subscribeService from '@/api/subscribe'
+import watchService from '@/api/watchlist'
 import router from '../router'
 
 Vue.use(Vuex)
@@ -16,7 +18,8 @@ const state = {
   projects: [],
   favourite: '',
   endpoints: [],
-  endpointResponse: {}
+  endpointResponse: {},
+  orgUsers: []
 }
 const getters = {
   getUser (state) {
@@ -39,6 +42,9 @@ const getters = {
   },
   getEndpointResponse (state) {
     return state.endpointResponse
+  },
+  getOrgUsers (state) {
+    return state.orgUsers
   }
 }
 const actions = {
@@ -168,6 +174,58 @@ const actions = {
     }, (error) => {
       failure(error)
     }, endpointId)
+  },
+  addSubscription ({commit}, {request, success, failure}) {
+    console.log('data is ', request)
+    subscribeService.createSub((res) => {
+      let data = res.body.response
+      console.log('data ', data)
+      alert('You are successfully subscribed to this endpoint')
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
+  },
+  getUsers ({commit}, {request, orgId, success, failure}) {
+    console.log('data is ', orgId)
+    orgService.getAllUsers((res) => {
+      let data = res.body.response
+      commit('setUsers', {data})
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request, orgId)
+  },
+  addColab  ({commit}, {request, success, failure}) {
+    console.log('data is ', request)
+    projectService.addColab((res) => {
+      let data = res.body.response
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
+  },
+  subscribe  ({commit}, {request, success, failure}) {
+    console.log('data is ', request)
+    watchService.subscribe((res) => {
+      let data = res.body.response
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
+  },
+  addColabOrg ({commit}, {request, success, failure}) {
+    console.log('data is ', request)
+    orgService.addColab((res) => {
+      let data = res.body.response
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
   }
 }
 const mutations = {
@@ -175,6 +233,7 @@ const mutations = {
     state.user = data
     localStorage.setItem('name', data.name)
     localStorage.setItem('userId', data.userId)
+    localStorage.setItem('emailId', data.emailId)
     router.push('organization')
   },
   setOrganization (state, {data}) {
@@ -199,6 +258,9 @@ const mutations = {
     state.endpointResponse = JSON.stringify(convertedData)
     console.log('data is ', data)
     console.log('parsed data is ', JSON.parse(data))
+  },
+  setUsers (state, {data}) {
+    state.orgUsers = data
   }
 }
 export default new Vuex.Store({

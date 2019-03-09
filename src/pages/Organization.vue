@@ -13,8 +13,41 @@
         <div class="panel panel-info">
           <div class="panel-body organizationBody">
             <p @click="getProjects(organization.organisationId)">{{organization.organisationName}}</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#usersModal">Add User</button>
           </div>
         </div>
+        <!-- Users Modal -->
+    <div id="usersModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add New Users</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label>Enter User Email</label>
+                <input type="text" class="form-control" name="user_email" placeholder="Enter User Email"
+                v-model="search">
+                <!-- <autocomplete
+                  :source="getOrgUsers"
+                  ref="autocomplete"
+                  placeholder="Search USERS"
+                  input-class="form-control"
+                  @selected="getOrgUsers.name"
+                >
+                </autocomplete> -->
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal"
+            @click="addColab(organization.organisationId)">Add Collaborator</button>
+          </div>
+        </div>
+      </div>
+    </div>
       </div>
     </div>
     <!-- Organization Modal -->

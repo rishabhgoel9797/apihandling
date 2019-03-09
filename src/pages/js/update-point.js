@@ -1,3 +1,5 @@
+import { mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
@@ -11,6 +13,13 @@ export default {
       requestBody: '',
       response: ''
     }
+  },
+  created () {
+    // this.getRequest()
+    this.getResponse()
+  },
+  computed: {
+    ...mapGetters(['getEndpointResponse'])
   },
   methods: {
     createParams () {
@@ -44,9 +53,16 @@ export default {
       this.$store.dispatch('createRequest', {request, paramsType, endpointId})
     },
     addResponse () {
-      let request = {request: this.response}
+      let request = {request: this.getEndpointResponse}
       let endpointId = this.$route.params.endpointId
       this.$store.dispatch('createResponse', {request, endpointId})
+    },
+    // getRequest () {
+
+    // },
+    getResponse () {
+      let endpointId = this.$route.params.endpointId
+      this.$store.dispatch('getResponse', {endpointId})
     }
   }
 }

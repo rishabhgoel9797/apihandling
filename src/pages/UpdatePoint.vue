@@ -42,7 +42,7 @@
             <button type="button" class="btn btn-info pull-right" @click="addResponse">Save Response</button>
             <br>
             <label>Paste Response Body</label>
-            <textarea class="form-control textbody" rows="10" v-model="response"></textarea>
+            <textarea class="form-control textbody" rows="10" v-model="getEndpointResponse"></textarea>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@
   </div>
 </template>
 
-<script src="./js/create-point.js"></script>
+<script src="./js/update-point.js"></script>
 
 <style>
 .container {

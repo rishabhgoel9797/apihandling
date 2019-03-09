@@ -14,7 +14,9 @@ const state = {
   org: {},
   allOrg: [],
   projects: [],
-  favourite: ''
+  favourite: '',
+  endpoints: [],
+  endpointResponse: {}
 }
 const getters = {
   getUser (state) {
@@ -31,6 +33,12 @@ const getters = {
   },
   getFavourite (state) {
     return state.favourite
+  },
+  getAllEndPoints (state) {
+    return state.endpoints
+  },
+  getEndpointResponse (state) {
+    return state.endpointResponse
   }
 }
 const actions = {
@@ -101,6 +109,7 @@ const actions = {
     endPointService.createPoint((res) => {
       let data = res.body.response
       console.log('data ', data)
+      router.push('/createEndPoint/' + data.id)
       success(res)
     }, (error) => {
       failure(error)
@@ -136,6 +145,29 @@ const actions = {
     }, (error) => {
       failure(error)
     }, endpointId)
+  },
+  allEndpoints ({commit}, {request, success, failure, projectId}) {
+    endPointService.getAllEndpoints((res) => {
+      let data = res.body.response
+      console.log('response data k', data)
+      commit('setAllEndpoints', {data})
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request, projectId)
+  },
+  getResponse ({commit}, {success, failure, endpointId}) {
+    endPointResponseService.getResponse((res) => {
+      console.log('response is ', res)
+      let data = res.body.response
+      console.log('response data k', data)
+      commit('setEndpointResponse', {data})
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, endpointId)
   }
 }
 const mutations = {
@@ -156,6 +188,17 @@ const mutations = {
   },
   setJson (state, {data}) {
     state.favourite = data
+  },
+  setAllEndpoints (state, {data}) {
+    state.endpoints = data
+  },
+  setEndpointResponse (state, {data}) {
+    var x = JSON.parse(data)
+    var convertedData = x['#']
+    console.log(convertedData)
+    state.endpointResponse = JSON.stringify(convertedData)
+    console.log('data is ', data)
+    console.log('parsed data is ', JSON.parse(data))
   }
 }
 export default new Vuex.Store({

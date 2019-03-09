@@ -4,6 +4,8 @@ import userService from '@/api/users'
 import orgService from '@/api/organization'
 import projectService from '@/api/projects'
 import endPointService from '@/api/endpoint'
+import endPointRequestService from '@/api/endpointRequest'
+import endPointResponseService from '@/api/endpointResponse'
 import router from '../router'
 
 Vue.use(Vuex)
@@ -99,6 +101,26 @@ const actions = {
     }, (error) => {
       failure(error)
     }, request)
+  },
+  createRequest ({commit}, {request, success, failure, paramsType, endpointId}) {
+    console.log('data is ', request)
+    endPointRequestService.createRequest((res) => {
+      let data = res.body.response
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request, paramsType, endpointId)
+  },
+  createResponse ({commit}, {request, success, failure, endpointId}) {
+    console.log('data is ', request)
+    endPointResponseService.createResponse((res) => {
+      let data = res.body.response
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request, endpointId)
   }
 }
 const mutations = {

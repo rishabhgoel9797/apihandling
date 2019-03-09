@@ -28,9 +28,9 @@
       <div class="col-md-6 request">
         <div class="form-group">
           <h2 class="heading">Request</h2>
-          <button type="button" class="btn btn-info pull-right">Save Request</button><br>
+          <button type="button" class="btn btn-info pull-right" @click="requestBodyFunction">Save Request</button><br>
           <label>Paste Request Body</label>
-          <textarea class="form-control textbody" rows="10"></textarea>
+          <textarea class="form-control textbody" rows="10" v-model="requestBody"></textarea>
           <br>
           <div class="col-md-10">
           <label>Number of Params Required</label>
@@ -45,14 +45,15 @@
           <div class="row" id="paramInputs">
 
           </div>
+          <button type="button" class="btn btn-info" @click="paramsValue">Save</button>
         </div>
       </div>
       <div class="col-md-6 response">
         <div class="form-group">
           <h2 class="heading">Response</h2>
-          <button type="button" class="btn btn-info pull-right">Save Response</button><br>
+          <button type="button" class="btn btn-info pull-right" @click="addResponse">Save Response</button><br>
           <label>Paste Response Body</label>
-          <textarea class="form-control textbody" rows="10"></textarea>
+          <textarea class="form-control textbody" rows="10" v-model="response"></textarea>
         </div>
       </div>
     </div>

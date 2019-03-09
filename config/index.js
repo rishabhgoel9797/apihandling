@@ -33,8 +33,25 @@ module.exports = {
         }
       },
       '/endpoint/': {
-        target: 'http://10.177.69.110:8080/endpoint/',
+        target: 'http://10.177.68.231:8080/endpoint/',
         changeOrigin: true,
+        pathRewrite: {
+          '^/endpoint/': ''
+        }
+      },
+      '/endpointRequest/': {
+        target: 'http://10.177.68.231:8080/endpointRequest/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/endpointRequest/': ''
+        }
+      },
+      '/endpoint-response': {
+        target: 'http://10.177.68.231:8080/endpoint-response',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/endpoint-response': ''
+        }
       }
     },
 

@@ -13,7 +13,8 @@ const state = {
   user: {},
   org: {},
   allOrg: [],
-  projects: []
+  projects: [],
+  favourite: ''
 }
 const getters = {
   getUser (state) {
@@ -27,6 +28,9 @@ const getters = {
   },
   getAllProjects (state) {
     return state.projects
+  },
+  getFavourite (state) {
+    return state.favourite
   }
 }
 const actions = {
@@ -121,6 +125,17 @@ const actions = {
     }, (error) => {
       failure(error)
     }, request, endpointId)
+  },
+  getJson ({commit}, {endpointId, success, failure}) {
+    console.log('data is ', endpointId)
+    endPointResponseService.getResponse((res) => {
+      let data = res.body.response
+      commit('setJson', {data})
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, endpointId)
   }
 }
 const mutations = {
@@ -138,6 +153,9 @@ const mutations = {
   },
   setAllProjects (state, {data}) {
     state.projects = data
+  },
+  setJson (state, {data}) {
+    state.favourite = data
   }
 }
 export default new Vuex.Store({

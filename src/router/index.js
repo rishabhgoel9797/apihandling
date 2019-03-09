@@ -7,6 +7,7 @@ import Login from '@/pages/Login'
 import Project from '@/pages/Projects'
 import EndPoints from '@/pages/EndPoints'
 import CreatePoint from '@/pages/CreatePoint'
+import Favourites from '@/pages/Favourites'
 
 Vue.use(Router)
 
@@ -39,6 +40,10 @@ export default new Router({
     {
       path: '/createEndPoint/:projectId',
       component: CreatePoint
+    },
+    {
+      path: '/favourites/:endpointId',
+      component: Favourites
     }
   ],
   mode: 'history'

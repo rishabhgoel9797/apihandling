@@ -52,6 +52,13 @@ module.exports = {
         pathRewrite: {
           '^/endpoint-response': ''
         }
+      },
+      '/notify': {
+        target: 'http://10.177.68.231:8080/notify',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/notify': ''
+        }
       }
     },
 

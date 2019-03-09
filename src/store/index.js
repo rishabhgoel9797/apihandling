@@ -6,6 +6,7 @@ import projectService from '@/api/projects'
 import endPointService from '@/api/endpoint'
 import endPointRequestService from '@/api/endpointRequest'
 import endPointResponseService from '@/api/endpointResponse'
+import notificationService from '@/api/notification'
 import router from '../router'
 
 Vue.use(Vuex)
@@ -17,7 +18,8 @@ const state = {
   favourite: '',
   endpoints: [],
   endpointResponse: {},
-  endpointRequest: {}
+  endpointRequest: {},
+  notification: {}
 }
 const getters = {
   getUser (state) {
@@ -43,6 +45,9 @@ const getters = {
   },
   getEndpointRequest (state) {
     return state.endpointRequest
+  },
+  getAllNotifications (state) {
+    return state.notification
   }
 }
 const actions = {
@@ -194,6 +199,17 @@ const actions = {
     }, (error) => {
       failure(error)
     }, request, endpointId)
+  },
+  getNotification ({commit}, {request, success, failure}) {
+    console.log('data is ', request)
+    notificationService.getNotification((res) => {
+      let data = res.body.response
+      commit('setNotification', {data})
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
   }
 }
 const mutations = {
@@ -228,6 +244,9 @@ const mutations = {
   },
   setEndpointRequest (state, {data}) {
     state.endpointRequest = data
+  },
+  setNotification (state, {data}) {
+    state.notification = data
   }
 }
 export default new Vuex.Store({

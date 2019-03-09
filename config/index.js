@@ -3,7 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+const ip = 'http://10.177.68.231:8080/'
 module.exports = {
   dev: {
 
@@ -12,49 +12,49 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/users': {
-        target: 'http://10.177.68.231:8080/users',
+        target: ip+'users',
         changeOrigin: true,
         pathRewrite: {
           '^/users': ''
         }
       },
       '/organisation': {
-        target: 'http://10.177.68.231:8080/organisation',
+        target: ip+'organisation',
         changeOrigin: true,
         pathRewrite: {
           '^/organisation': ''
         }
       },
       '/project': {
-        target: 'http://10.177.68.231:8080/project',
+        target: ip+'project',
         changeOrigin: true,
         pathRewrite: {
           '^/project': ''
         }
       },
       '/endpoint/': {
-        target: 'http://10.177.68.231:8080/endpoint/',
+        target: ip+'endpoint/',
         changeOrigin: true,
         pathRewrite: {
           '^/endpoint/': ''
         }
       },
       '/endpointRequest/': {
-        target: 'http://10.177.68.231:8080/endpointRequest/',
+        target: ip+'endpointRequest/',
         changeOrigin: true,
         pathRewrite: {
           '^/endpointRequest/': ''
         }
       },
       '/endpoint-response': {
-        target: 'http://10.177.68.231:8080/endpoint-response',
+        target: ip+'endpoint-response',
         changeOrigin: true,
         pathRewrite: {
           '^/endpoint-response': ''
         }
       },
       '/notify': {
-        target: 'http://10.177.68.231:8080/notify',
+        target: ip+'notify',
         changeOrigin: true,
         pathRewrite: {
           '^/notify': ''

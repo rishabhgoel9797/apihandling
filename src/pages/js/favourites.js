@@ -5,55 +5,19 @@ let $ = JQuery
 export default {
   data () {
     return {
-      paths: [],
-      jsonObject: {}
+      paths: []
     }
   },
   computed: {
-    ...mapGetters(['getFavourite'])
+    ...mapGetters(['getFavourite']),
+    initilization () {
+      if (this.getFavourite) {
+        this.getJsonData()
+      }
+    }
   },
   created () {
     this.fetchResponse()
-  },
-  mounted () {
-    this.jsonObject = JSON.parse(this.getFavourite)
-    // var response = {
-    //   'request': {
-    //     'createdBy': {
-    //       'userId': '4bbd61e3-d390-463b-bfe3-fc7187135529'
-    //     },
-    //     'createdTimestamp': 3654364538,
-    //     'endpointPath': 'egdveg',
-    //     'project': {
-    //       'projectId': '89a491eb-faef-4751-bede-be0bdff28f59'
-    //     },
-    //     'requestMethod': 'skdbnsd',
-    //     'updatedBy': {
-    //       'userId': '4bbd61e3-d390-463b-bfe3-fc7187135529'
-    //     },
-    //     'updatedTimestamp': 342423043
-    //   }
-    // }
-    var response = this.jsonObject
-    var result = this.json2html(response)
-    var ref = this
-    var count = 0
-    $('#favourite').append(result)
-    $('li').click(function (e) {
-      var path = []
-      var el = $(this)
-      do {
-        path.unshift(el.attr('id'))
-        el = el.parent().closest('li')
-      } while (el.length !== 0)
-      var attrPath = path.join('/')
-      ref.paths.push(attrPath)
-      document.getElementById('points').innerHTML += '<div class="col-md-4"><div class="tag">' + ref.paths[count] + '</div></div>'
-      console.log(ref.paths)
-      alert(path.join('/'))
-      count++
-      e.stopPropagation()
-    })
   },
   methods: {
     json2html (json) {
@@ -73,6 +37,46 @@ export default {
     fetchResponse () {
       let endpointId = this.$route.params.endpointId
       this.$store.dispatch('getJson', {endpointId})
+    },
+    getJsonData () {
+      let jsonObject = JSON.parse(this.getFavourite)
+      // var response = {
+      //   'request': {
+      //     'createdBy': {
+      //       'userId': '4bbd61e3-d390-463b-bfe3-fc7187135529'
+      //     },
+      //     'createdTimestamp': 3654364538,
+      //     'endpointPath': 'egdveg',
+      //     'project': {
+      //       'projectId': '89a491eb-faef-4751-bede-be0bdff28f59'
+      //     },
+      //     'requestMethod': 'skdbnsd',
+      //     'updatedBy': {
+      //       'userId': '4bbd61e3-d390-463b-bfe3-fc7187135529'
+      //     },
+      //     'updatedTimestamp': 342423043
+      //   }
+      // }
+      var response = jsonObject
+      var result = this.json2html(response)
+      var ref = this
+      var count = 0
+      $('#favourite').append(result)
+      $('li').click(function (e) {
+        var path = []
+        var el = $(this)
+        do {
+          path.unshift(el.attr('id'))
+          el = el.parent().closest('li')
+        } while (el.length !== 0)
+        var attrPath = path.join('/')
+        ref.paths.push(attrPath)
+        document.getElementById('points').innerHTML += '<div class="col-md-4"><div class="tag">' + ref.paths[count] + '</div></div>'
+        console.log(ref.paths)
+        alert(path.join('/'))
+        count++
+        e.stopPropagation()
+      })
     }
   }
 }

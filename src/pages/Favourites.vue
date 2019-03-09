@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    {{getFavourite}}
+    {{initilization}}
     <h3>Click on End Point to make it Faavourite<i class="fa fa-star favourite-star" aria-hidden="true"></i></h3>
      <div id="favourite"></div>
      <div id="points">

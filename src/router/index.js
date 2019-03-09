@@ -7,6 +7,7 @@ import Login from '@/pages/Login'
 import Project from '@/pages/Projects'
 import EndPoints from '@/pages/EndPoints'
 import CreatePoint from '@/pages/CreatePoint'
+import UpdatePoint from '@/pages/UpdatePoint'
 
 Vue.use(Router)
 
@@ -39,6 +40,10 @@ export default new Router({
     {
       path: '/createEndPoint/:endpointId',
       component: CreatePoint
+    },
+    {
+      path: '/updateEndPoint/:endpointId',
+      component: UpdatePoint
     }
   ],
   mode: 'history'

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="projectName">
-      Blibli
+      {{getAllEndPoints[0].project.projectName}}
       <button
         type="button"
         class="btn btn-primary pull-right"
@@ -12,22 +12,9 @@
         Create Endpoint
       </button>
     </div>
-    <div class="endpoints_container">
-      <div class="endpoints alert alert-info">
-        <span class="endpoint_type">GET</span>/blibli/getProducts
-      </div>
-      <div class="endpoints alert alert-success">
-        <span class="endpoint_type">POST</span>/blibli/postProducts
-      </div>
-      <div class="endpoints alert alert-warning">
-        <span class="endpoint_type">PUT</span>/blibli/editProducts
-      </div>
-      <div class="endpoints alert alert-danger">
-        <span class="endpoint_type">DELETE</span>/blibli/deleteProducts
-      </div>
-      <div class="endpoints alert alert-info">
-        <span class="endpoint_type">GET</span>
-        /blibli/getProduct/{productId}
+    <div class="endpoints_container" v-for="endpoint in getAllEndPoints" :key="endpoint.id">
+      <div @click="singleEndPoint(endpoint.id)" class="endpoints alert alert-info hover">
+        <span class="endpoint_type">{{endpoint.requestMethod.toUpperCase()}}</span>{{endpoint.endpointPath}}
       </div>
     </div>
     <!-- Endpoint Modal -->
@@ -94,5 +81,8 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   margin-right: 10px;
+}
+.hover {
+  cursor: pointer;
 }
 </style>

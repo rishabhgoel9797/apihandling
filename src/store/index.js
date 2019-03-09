@@ -8,6 +8,7 @@ import endPointRequestService from '@/api/endpointRequest'
 import endPointResponseService from '@/api/endpointResponse'
 import subscribeService from '@/api/subscribe'
 import watchService from '@/api/watchlist'
+import notificationService from '@/api/notification'
 import router from '../router'
 
 Vue.use(Vuex)
@@ -19,7 +20,9 @@ const state = {
   favourite: '',
   endpoints: [],
   endpointResponse: {},
-  orgUsers: []
+  orgUsers: [],
+  endpointRequest: {},
+  notification: {}
 }
 const getters = {
   getUser (state) {
@@ -45,6 +48,12 @@ const getters = {
   },
   getOrgUsers (state) {
     return state.orgUsers
+  },
+  getEndpointRequest (state) {
+    return state.endpointRequest
+  },
+  getAllNotifications (state) {
+    return state.notification
   }
 }
 const actions = {
@@ -124,6 +133,16 @@ const actions = {
   createRequest ({commit}, {request, success, failure, paramsType, endpointId}) {
     console.log('data is ', request)
     endPointRequestService.createRequest((res) => {
+      let data = res.body.response
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request, paramsType, endpointId)
+  },
+  updateRequest ({commit}, {request, success, failure, paramsType, endpointId}) {
+    console.log('data is ', request)
+    endPointRequestService.getRequest((res) => {
       let data = res.body.response
       console.log('data ', data)
       success(res)
@@ -217,10 +236,33 @@ const actions = {
       failure(error)
     }, request)
   },
+  getRequest ({commit}, {request, success, failure, endpointId}) {
+    endPointRequestService.getRequest((res) => {
+      console.log('response is ', res)
+      let data = res.body.response
+      console.log('response data k', data)
+      commit('setEndpointRequest', {data})
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
+  },
   addColabOrg ({commit}, {request, success, failure}) {
     console.log('data is ', request)
     orgService.addColab((res) => {
       let data = res.body.response
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
+  },
+  getNotification ({commit}, {request, success, failure}) {
+    console.log('data is ', request)
+    notificationService.getNotification((res) => {
+      let data = res.body.response
+      commit('setNotification', {data})
       console.log('data ', data)
       success(res)
     }, (error) => {
@@ -261,6 +303,12 @@ const mutations = {
   },
   setUsers (state, {data}) {
     state.orgUsers = data
+  },
+  setEndpointRequest (state, {data}) {
+    state.endpointRequest = data
+  },
+  setNotification (state, {data}) {
+    state.notification = data
   }
 }
 export default new Vuex.Store({

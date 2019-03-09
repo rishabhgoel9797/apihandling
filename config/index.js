@@ -66,6 +66,13 @@ module.exports = {
         pathRewrite: {
           '^/watchlist': ''
         }
+      },
+      '/notify': {
+        target: ip+'notify',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/notify': ''
+        }
       }
     },
 

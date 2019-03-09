@@ -9,6 +9,7 @@ import EndPoints from '@/pages/EndPoints'
 import CreatePoint from '@/pages/CreatePoint'
 import Favourites from '@/pages/Favourites'
 import UpdatePoint from '@/pages/UpdatePoint'
+import Notification from '@/pages/Notification'
 
 Vue.use(Router)
 
@@ -45,6 +46,10 @@ export default new Router({
     {
       path: '/favourites/:endpointId',
       component: Favourites
+    },
+    {
+      path: '/notification',
+      component: Notification
     },
     {
       path: '/updateEndPoint/:endpointId',

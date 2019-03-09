@@ -12,10 +12,39 @@
             >Save Request</button>
             <br>
             <label>Paste Request Body</label>
-            <textarea class="form-control textbody" rows="10" v-model="requestBody"></textarea>
+            <textarea v-if="getEndpointRequest[0].type==='body'"
+              class="form-control textbody"
+              rows="10"
+              v-model="getEndpointRequest[0].content"
+            ></textarea>
+            <textarea v-if="getEndpointRequest[0].type==='param'"
+              class="form-control textbody"
+              rows="10"
+              v-model="requestBody"
+            ></textarea>
             <br>
+            <div
+              class="row"
+              id="paramInputs"
+              v-for="response in getEndpointRequest"
+              :key="response.id"
+            >
+              <div v-if="response.type==='param'" class="col-md-6">
+                <div class="form-group">
+                  <input type="text" placeholder="key" class="form-control key" :value="response.content">
+                </div>
+              </div>
+              <div v-if="response.type==='param'" class="col-md-6">
+                <div class="form-group">
+                  <select class="form-control required" placeholder="required?">
+                    <option v-if="response.requestParamRequired==false" :value="response.requestParamRequired" selected="selected">False</option>
+                    <option v-if="response.requestParamRequired==true" :value="response.requestParamRequired" selected="selected">True</option>
+                  </select>
+                </div>
+              </div>
+            </div>
             <div class="col-md-10">
-              <label>Number of Params Required</label>
+              <label>Add more params</label>
               <input
                 type="number"
                 class="form-control"

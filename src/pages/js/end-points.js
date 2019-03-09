@@ -25,7 +25,7 @@ export default {
       this.$store.dispatch('createEndPoint', {request})
     },
     getEndpoints () {
-      let request = {tokenId: 'dbunfu'}
+      let request = {tokenId: localStorage.getItem('userId')}
       console.log('my request is ', request)
       let projectId = this.projectId
       this.$store.dispatch('allEndpoints', {request, projectId})

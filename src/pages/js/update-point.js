@@ -15,16 +15,15 @@ export default {
     }
   },
   created () {
-    // this.getRequest()
+    this.getRequest()
     this.getResponse()
   },
   computed: {
-    ...mapGetters(['getEndpointResponse'])
+    ...mapGetters(['getEndpointResponse', 'getEndpointRequest'])
   },
   methods: {
     createParams () {
       let paramsDiv = document.getElementById('paramInputs')
-      paramsDiv.innerHTML = ''
       for (let i = 0; i < this.params; i++) {
         paramsDiv.innerHTML = paramsDiv.innerHTML + '<div class="col-md-6"><div class="form-group"><input type="text" placeholder="key" class="form-control key"></div></div><div class="col-md-6"><div class="form-group"><select class="form-control required" placeholder="required?"><option value="">--Attribute Required?--</option><option value="true">True</option><option value="false">False</option></select></div></div>'
       }
@@ -43,23 +42,26 @@ export default {
       let request = {request: obj}
       let paramsType = 'param'
       let endpointId = this.$route.params.endpointId
-      this.$store.dispatch('createRequest', {request, paramsType, endpointId})
+      this.$store.dispatch('updateRequest', {request, paramsType, endpointId})
     },
     requestBodyFunction () {
-      let jsonObj = JSON.parse(this.requestBody)
+      let jsonObj = JSON.parse(this.getEndpointRequest[0].content)
+      if (this.getEndpointRequest[0].type === 'param') { jsonObj = JSON.parse(this.requestBody) }
       let paramsType = 'body'
       let request = {request: jsonObj}
       let endpointId = this.$route.params.endpointId
-      this.$store.dispatch('createRequest', {request, paramsType, endpointId})
+      this.$store.dispatch('updateRequest', {request, paramsType, endpointId})
     },
     addResponse () {
       let request = {request: this.getEndpointResponse}
       let endpointId = this.$route.params.endpointId
       this.$store.dispatch('createResponse', {request, endpointId})
     },
-    // getRequest () {
-
-    // },
+    getRequest () {
+      let request = {tokenId: localStorage.getItem('userId')}
+      let endpointId = this.$route.params.endpointId
+      this.$store.dispatch('getRequest', {request, endpointId})
+    },
     getResponse () {
       let endpointId = this.$route.params.endpointId
       this.$store.dispatch('getResponse', {endpointId})

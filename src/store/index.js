@@ -16,7 +16,8 @@ const state = {
   projects: [],
   favourite: '',
   endpoints: [],
-  endpointResponse: {}
+  endpointResponse: {},
+  endpointRequest: {}
 }
 const getters = {
   getUser (state) {
@@ -39,6 +40,9 @@ const getters = {
   },
   getEndpointResponse (state) {
     return state.endpointResponse
+  },
+  getEndpointRequest (state) {
+    return state.endpointRequest
   }
 }
 const actions = {
@@ -125,6 +129,16 @@ const actions = {
       failure(error)
     }, request, paramsType, endpointId)
   },
+  updateRequest ({commit}, {request, success, failure, paramsType, endpointId}) {
+    console.log('data is ', request)
+    endPointRequestService.getRequest((res) => {
+      let data = res.body.response
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request, paramsType, endpointId)
+  },
   createResponse ({commit}, {request, success, failure, endpointId}) {
     console.log('data is ', request)
     endPointResponseService.createResponse((res) => {
@@ -168,6 +182,18 @@ const actions = {
     }, (error) => {
       failure(error)
     }, endpointId)
+  },
+  getRequest ({commit}, {request, success, failure, endpointId}) {
+    endPointRequestService.getRequest((res) => {
+      console.log('response is ', res)
+      let data = res.body.response
+      console.log('response data k', data)
+      commit('setEndpointRequest', {data})
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request, endpointId)
   }
 }
 const mutations = {
@@ -199,6 +225,9 @@ const mutations = {
     state.endpointResponse = JSON.stringify(convertedData)
     console.log('data is ', data)
     console.log('parsed data is ', JSON.parse(data))
+  },
+  setEndpointRequest (state, {data}) {
+    state.endpointRequest = data
   }
 }
 export default new Vuex.Store({

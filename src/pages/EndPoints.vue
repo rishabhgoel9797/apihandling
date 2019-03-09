@@ -2,7 +2,12 @@
   <div class="container">
     <div class="projectName">
       Blibli
-      <button type="button" class="btn btn-primary pull-right" @click="createEndPoint($route.params.projectId)">
+      <button
+        type="button"
+        class="btn btn-primary pull-right"
+        data-toggle="modal"
+        data-target="#endpointModal"
+      >
         <i class="fa fa-plus add" aria-hidden="true"></i>
         Create Endpoint
       </button>
@@ -25,7 +30,7 @@
         /blibli/getProduct/{productId}
       </div>
     </div>
-    <!-- EndPoint Modal -->
+    <!-- Endpoint Modal -->
     <div id="endpointModal" class="modal fade" role="dialog">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -35,18 +40,30 @@
           </div>
           <div class="modal-body">
             <form>
-              <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control" name="projectName">
-              </div>
-              <div class="form-group">
-                <label>Description</label>
-                <textarea type="text" class="form-control" rows="5" name="projectDescription"></textarea>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Request Type</label>
+                    <select class="form-control" v-model="requestType">
+                      <option value>--Select Option--</option>
+                      <option value="GET">GET</option>
+                      <option value="POST">POST</option>
+                      <option value="PUT">PUT</option>
+                      <option value="DELETE">DELETE</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label>URL</label>
+                    <input type="text" class="form-control" placeholder="Enter URL" v-model="url">
+                  </div>
+                </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
+            <button type="button" class="btn btn-info subURL" data-dismiss="modal" @click="addEndpoint">Submit EndPoint</button>
           </div>
         </div>
       </div>

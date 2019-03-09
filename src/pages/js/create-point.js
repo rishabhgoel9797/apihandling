@@ -33,23 +33,19 @@ export default {
       console.log('params are', obj)
       let request = {request: obj}
       let paramsType = 'param'
-      let endpointId = '3fa79838-11a9-4d51-99e1-0e94c0cd0be3'
+      let endpointId = this.$route.params.endpointId
       this.$store.dispatch('createRequest', {request, paramsType, endpointId})
     },
     requestBodyFunction () {
       let jsonObj = JSON.parse(this.requestBody)
       let paramsType = 'body'
       let request = {request: jsonObj}
-      let endpointId = '3fa79838-11a9-4d51-99e1-0e94c0cd0be3'
+      let endpointId = this.$route.params.endpointId
       this.$store.dispatch('createRequest', {request, paramsType, endpointId})
-    },
-    addEndpoint () {
-      let request = {request: {createdBy: {userId: localStorage.getItem('userId')}, createdTimestamp: 3423846327, endpointPath: this.url, project: {projectId: this.projectId}, requestMethod: this.requestType, updatedBy: {userId: localStorage.getItem('userId')}, updatedTimestamp: 512368274}}
-      this.$store.dispatch('createEndPoint', {request})
     },
     addResponse () {
       let request = {request: this.response}
-      let endpointId = '3fa79838-11a9-4d51-99e1-0e94c0cd0be3'
+      let endpointId = this.$route.params.endpointId
       this.$store.dispatch('createResponse', {request, endpointId})
     }
   }

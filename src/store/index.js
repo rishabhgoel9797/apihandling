@@ -97,6 +97,7 @@ const actions = {
     endPointService.createPoint((res) => {
       let data = res.body.response
       console.log('data ', data)
+      router.push('/createEndPoint/' + data.id)
       success(res)
     }, (error) => {
       failure(error)

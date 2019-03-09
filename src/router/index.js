@@ -37,7 +37,7 @@ export default new Router({
       component: EndPoints
     },
     {
-      path: '/createEndPoint/:projectId',
+      path: '/createEndPoint/:endpointId',
       component: CreatePoint
     }
   ],

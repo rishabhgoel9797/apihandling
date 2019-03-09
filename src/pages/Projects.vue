@@ -70,4 +70,7 @@
   display: block;
   cursor: pointer;
 }
+p {
+  cursor: pointer;
+}
 </style>

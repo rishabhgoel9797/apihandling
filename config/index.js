@@ -31,6 +31,10 @@ module.exports = {
         pathRewrite: {
           '^/project': ''
         }
+      },
+      '/endpoint/': {
+        target: 'http://10.177.69.110:8080/endpoint/',
+        changeOrigin: true,
       }
     },
 

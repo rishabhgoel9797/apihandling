@@ -25,7 +25,7 @@ export default {
       this.$store.dispatch('allOrganizations', {request})
     },
     getProjects (orgId) {
-      this.$router.push('projects/' + orgId)
+      this.$router.push('/projects/' + orgId)
     }
   }
 }

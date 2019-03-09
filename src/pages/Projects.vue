@@ -12,7 +12,7 @@
       <div class="col-md-4" v-for="project in getAllProjects" :key="project.projectId">
         <div class="panel panel-info">
           <div class="panel-body projectBody">
-            {{project.projectName}}
+            <p @click="endpoints(project.projectId)">{{project.projectName}}</p>
           </div>
         </div>
       </div>

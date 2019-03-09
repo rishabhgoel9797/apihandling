@@ -5,20 +5,23 @@
       <div class="col-md-4">
         <div class="form-group">
           <label>Request Type</label>
-          <select class="form-control">
+          <select class="form-control" v-model="requestType">
             <option value="">--Select Option--</option>
-            <option value="">GET</option>
-            <option value="">POST</option>
-            <option value="">PUT</option>
-            <option value="">DELETE</option>
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
           </select>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-6">
         <div class="form-group">
           <label>URL</label>
-          <input type="text" class="form-control" placeholder="Enter URL">
+          <input type="text" class="form-control" placeholder="Enter URL" v-model="url">
         </div>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-info subURL" @click="addEndpoint">Submit EndPoint</button>
       </div>
     </div>
     <div class="row request_response_Container">
@@ -82,5 +85,8 @@
 }
 #numberParams {
   margin-bottom: 20px;
+}
+.subURL {
+  margin-top: 25px;
 }
 </style>

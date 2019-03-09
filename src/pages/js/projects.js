@@ -26,6 +26,9 @@ export default {
     getProjects () {
       let request = {request: {createdBy: {userId: localStorage.getItem('userId')}, organisationId: this.orgId}}
       this.$store.dispatch('allProjects', {request})
+    },
+    endpoints (projectId) {
+      this.$router.push('/endpoints/' + projectId)
     }
   }
 }

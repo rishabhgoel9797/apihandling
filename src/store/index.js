@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import userService from '@/api/users'
 import orgService from '@/api/organization'
 import projectService from '@/api/projects'
+import endPointService from '@/api/endpoint'
 import router from '../router'
 
 Vue.use(Vuex)
@@ -84,6 +85,16 @@ const actions = {
       let data = res.body.response
       console.log('data ', data)
       commit('setAllProjects', {data})
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
+  },
+  createEndPoint ({commit}, {request, success, failure}) {
+    console.log('data is ', request)
+    endPointService.createPoint((res) => {
+      let data = res.body.response
+      console.log('data ', data)
       success(res)
     }, (error) => {
       failure(error)

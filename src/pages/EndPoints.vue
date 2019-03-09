@@ -2,7 +2,7 @@
   <div class="container">
     <div class="projectName">
       Blibli
-      <button type="button" class="btn btn-primary pull-right" @click="createEndPoint">
+      <button type="button" class="btn btn-primary pull-right" @click="createEndPoint($route.params.projectId)">
         <i class="fa fa-plus add" aria-hidden="true"></i>
         Create Endpoint
       </button>

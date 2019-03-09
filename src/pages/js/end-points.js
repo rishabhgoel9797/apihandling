@@ -8,8 +8,8 @@ export default {
     }
   },
   methods: {
-    createEndPoint () {
-      this.$router.push('createEndPoint')
+    createEndPoint (projectId) {
+      this.$router.push('/createEndPoint/' + projectId)
     }
   }
 }

@@ -46,6 +46,7 @@ export default {
     },
     requestBodyFunction () {
       let jsonObj = JSON.parse(this.getEndpointRequest[0].content)
+      console.log('NEW ', this.getEndpointRequest[0].content)
       if (this.getEndpointRequest[0].type === 'param') { jsonObj = JSON.parse(this.requestBody) }
       let paramsType = 'body'
       let request = {request: jsonObj}
@@ -65,6 +66,11 @@ export default {
     getResponse () {
       let endpointId = this.$route.params.endpointId
       this.$store.dispatch('getResponse', {endpointId})
+    },
+    publish () {
+      let request = {tokenId: localStorage.getItem('userId')}
+      let endpointId = this.$route.params.endpointId
+      this.$store.dispatch('publishRequest', {request, endpointId})
     }
   }
 }

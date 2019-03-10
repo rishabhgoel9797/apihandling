@@ -73,6 +73,13 @@ module.exports = {
         pathRewrite: {
           '^/notify': ''
         }
+      },
+      '/swaggerPlugin': {
+        target: ip+'swaggerPlugin',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/swaggerPlugin': ''
+        }
       }
     },
 

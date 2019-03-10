@@ -2,6 +2,8 @@
   <div class="container">
     <div class="notification_container" v-for="notification in getAllNotifications" :key="notification.notifyId">
       <div class="notification alert alert-info hover">
+        <div class="col-sm-5">{{notification.projectName}}</div><div class="col-sm-6">{{notification.endpointPath}}</div>
+        <br><br>
         <span class="notification_type">{{notification.notificationType}}</span>{{notification.notifyMessage}}
       </div>
     </div>

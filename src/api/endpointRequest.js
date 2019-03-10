@@ -3,7 +3,8 @@ import commonApi from '@/api/index.js'
 const apiPath = {
   create_endpointrequest: '/endpointRequest/',
   get_endpointrequest: '/endpointRequest/get/',
-  update_endpointrequest: '/endpointRequest/'
+  update_endpointrequest: '/endpointRequest/',
+  publish_request: '/endpointRequest/publish/'
 }
 
 const endPointRequestService = {
@@ -18,6 +19,10 @@ const endPointRequestService = {
   updateRequest (callback, errHandler, userObj, paramsType, endpointId) {
     console.log('param', paramsType)
     commonApi.putDataViaApi(apiPath.update_endpointrequest + endpointId + '/' + paramsType, userObj, callback, errHandler)
+  },
+  publishRequest (callback, errHandler, userObj, endpointId) {
+    console.log('publishRequest', {userObj, endpointId})
+    commonApi.postDataViaApi(apiPath.publish_request + endpointId, userObj, callback, errHandler)
   }
 }
 

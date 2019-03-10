@@ -63,6 +63,7 @@
             <br>
             <div class="row" id="paramInputs"></div>
             <button type="button" class="btn btn-info" @click="paramsValue">Save</button>
+            <button v-if="getEndpointRequest[0].published===false" type="button" class="btn btn-info" @click="publish">Publish</button>
           </div>
         </div>
         <div class="col-md-6 response">

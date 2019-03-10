@@ -269,6 +269,17 @@ const actions = {
       failure(error)
     }, request, endpointId)
   },
+  swagger ({commit}, {request, success, failure}) {
+    console.log('data is ', request)
+    endPointService.swagger((res) => {
+      let data = res.body.response
+      console.log('data ', data)
+      window.location.reload()
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
+  },
   getNotification ({commit}, {request, success, failure}) {
     console.log('data is ', request)
     notificationService.getNotification((res) => {

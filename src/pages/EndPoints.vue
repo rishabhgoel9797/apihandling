@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div class="projectName">
+    <h1 class="error" v-if="getAllEndPoints.length==0">No EndPoints Available</h1>
+    <div v-else class="projectName">
       {{getAllEndPoints[0].project.projectName}}
       <button
         type="button"
@@ -11,6 +12,16 @@
       >
         <i class="fa fa-plus add" aria-hidden="true"></i>
         Create Endpoint
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary pull-right"
+        data-toggle="modal"
+        data-target="#swaggerModal"
+        v-if="getAllEndPoints[0].author==true"
+      >
+        <i class="fa fa-plus add" aria-hidden="true"></i>
+        Import From Swagger
       </button>
       <button v-else class="alert alert-danger pull-right" style="font-size: 20px;">You are not allowed to create endpoint !</button>
     </div>
@@ -60,6 +71,32 @@
         </div>
       </div>
     </div>
+    <!-- Swagger Modal -->
+    <div id="swaggerModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Import From Swagger</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>SWAGGER URL</label>
+                    <input type="text" class="form-control" placeholder="Enter URL" v-model="url">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info subURL" data-dismiss="modal" @click="swaggerImport">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -89,5 +126,12 @@
 }
 .hover {
   cursor: pointer;
+}
+.btn {
+  margin-right: 10px;
+}
+.error {
+  margin-top: 150px;
+  text-align: center;
 }
 </style>

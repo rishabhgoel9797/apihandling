@@ -40,6 +40,10 @@ export default {
     subscribe (id) {
       let request = {request: {endPointId: id, subscriberId: localStorage.getItem('userId')}, tokenId: localStorage.getItem('emailId')}
       this.$store.dispatch('addSubscription', {request})
+    },
+    swaggerImport () {
+      let request = {request: {projectId: this.projectId, url: this.url, userId: localStorage.getItem('userId')}, tokenId: localStorage.getItem('userId')}
+      this.$store.dispatch('swagger', {request})
     }
   }
 }

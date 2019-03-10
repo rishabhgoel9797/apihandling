@@ -21,6 +21,9 @@ export default {
     },
     org () {
       this.$router.push('/organization')
+    },
+    notifications () {
+      this.$router.push('/notification')
     }
   }
 }

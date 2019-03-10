@@ -94,7 +94,7 @@
 }
 .textbody {
   background-color: lightgray;
-  color: #fff;
+  color: #000;
 }
 .heading {
   text-align: center;

@@ -20,6 +20,7 @@
       </div>
       <div class="col-md-2">
         <button type="button" class="btn btn-warning btn-lg" @click="subscribe(endpoint.id)" v-if="getAllEndPoints[0].author!=true&&getAllEndPoints[index].subscribed==false">Subscribe</button>
+        <button type="button" class="btn btn-danger btn-lg" @click="Unsubscribe(endpoint.id)" v-if="getAllEndPoints[0].author!=true&&getAllEndPoints[index].subscribed==true">Unsubscribe</button>
       </div>
     </div>
     <!-- Endpoint Modal -->

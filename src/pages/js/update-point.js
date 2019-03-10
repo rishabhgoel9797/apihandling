@@ -11,7 +11,8 @@ export default {
       required: '',
       paramsObject: {},
       requestBody: '',
-      response: ''
+      response: '',
+      responseModel: ''
     }
   },
   created () {
@@ -20,6 +21,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getEndpointResponse', 'getEndpointRequest'])
+  },
+  mounted () {
+    this.responseModel = this.getEndpointResponse
   },
   methods: {
     createParams () {
@@ -54,7 +58,7 @@ export default {
       this.$store.dispatch('updateRequest', {request, paramsType, endpointId})
     },
     addResponse () {
-      let request = {request: this.getEndpointResponse, tokenId: localStorage.getItem('userId')}
+      let request = {request: this.responseModel, tokenId: localStorage.getItem('userId')}
       let endpointId = this.$route.params.endpointId
       this.$store.dispatch('createResponse', {request, endpointId})
     },

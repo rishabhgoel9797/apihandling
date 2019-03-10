@@ -246,7 +246,7 @@ const actions = {
       success(res)
     }, (error) => {
       failure(error)
-    }, request)
+    }, request, endpointId)
   },
   addColabOrg ({commit}, {request, success, failure}) {
     console.log('data is ', request)

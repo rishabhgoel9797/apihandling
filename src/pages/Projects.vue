@@ -12,7 +12,7 @@
       <div class="col-md-4" v-for="project in getAllProjects" :key="project.projectId">
         <div class="panel panel-info">
           <div class="panel-body projectBody">
-            <p @click="endpoints(project.projectId)">{{project.projectName}}</p>
+            <p @click="endpoints(project.projectId,project.author)">{{project.projectName}}</p>
             <button class="btn btn-info addColab" data-toggle="modal" data-target="#usersModal">Add Collaborators</button>
           </div>
         </div>

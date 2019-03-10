@@ -54,7 +54,7 @@ export default {
       this.$store.dispatch('updateRequest', {request, paramsType, endpointId})
     },
     addResponse () {
-      let request = {request: this.getEndpointResponse}
+      let request = {request: this.getEndpointResponse, tokenId: localStorage.getItem('userId')}
       let endpointId = this.$route.params.endpointId
       this.$store.dispatch('createResponse', {request, endpointId})
     },

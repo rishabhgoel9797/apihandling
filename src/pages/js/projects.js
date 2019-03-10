@@ -36,10 +36,11 @@ export default {
       })
     },
     getProjects () {
-      let request = {request: {createdBy: {userId: localStorage.getItem('userId')}, organisationId: this.orgId}}
+      let request = {request: {createdBy: {userId: localStorage.getItem('userId')}, organisationId: this.orgId}, tokenId: localStorage.getItem('userId')}
       this.$store.dispatch('allProjects', {request})
     },
-    endpoints (projectId) {
+    endpoints (projectId, author) {
+      localStorage.setItem('author', author)
       this.$router.push('/endpoints/' + projectId)
     },
     getUsersInOrg () {

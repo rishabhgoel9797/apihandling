@@ -36,8 +36,13 @@
       <button v-else class="alert alert-danger pull-right" style="font-size: 20px;">You are not allowed to create endpoint !</button>
     </div>
     <div class="endpoints_container" v-for="(endpoint, index) in getAllEndPoints" :key="endpoint.id">
-      <div @click="singleEndPoint(endpoint.id, endpoint.author)" class="endpoints alert alert-info hover col-md-10">
+      <div class="endpoints alert alert-info hover col-md-10">
         <span class="endpoint_type">{{endpoint.requestMethod.toUpperCase()}}</span>{{endpoint.endpointPath}}
+        <div class="req_res_buttons pull-right">
+          <button type="button" class="btn btn-success" v-if="getAllEndPoints[0].author!=true">Request</button>
+          <button type="button" class="btn btn-primary" v-if="getAllEndPoints[0].author!=true" @click="singleEndPoint(endpoint.id, endpoint.author)">Response</button>
+          <button type="button" class="btn btn-warning" v-if="getAllEndPoints[0].author===true" @click="singleEndPoint(endpoint.id, endpoint.author)">Update</button>
+        </div>
       </div>
       <div class="col-md-2">
         <button type="button" class="btn btn-warning btn-lg" @click="subscribe(endpoint.id)" v-if="getAllEndPoints[0].author!=true&&getAllEndPoints[index].subscribed==false">Subscribe</button>

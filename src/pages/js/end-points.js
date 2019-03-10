@@ -30,8 +30,12 @@ export default {
       let projectId = this.projectId
       this.$store.dispatch('allEndpoints', {request, projectId})
     },
-    singleEndPoint (endpointId) {
-      router.push('/updateEndPoint/' + endpointId)
+    singleEndPoint (endpointId, author) {
+      if (author === true) {
+        router.push('/updateEndPoint/' + endpointId)
+      } else {
+        router.push('/favourites/' + endpointId)
+      }
     },
     subscribe (id) {
       let request = {request: {endPointId: id, subscriberId: localStorage.getItem('userId')}, tokenId: localStorage.getItem('emailId')}

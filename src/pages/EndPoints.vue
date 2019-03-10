@@ -7,17 +7,19 @@
         class="btn btn-primary pull-right"
         data-toggle="modal"
         data-target="#endpointModal"
+        v-if="getAllEndPoints[0].author==true"
       >
         <i class="fa fa-plus add" aria-hidden="true"></i>
         Create Endpoint
       </button>
+      <button v-else class="alert alert-danger pull-right" style="font-size: 20px;">You are not allowed to create endpoint !</button>
     </div>
-    <div class="endpoints_container" v-for="endpoint in getAllEndPoints" :key="endpoint.id">
-      <div @click="singleEndPoint(endpoint.id)" class="endpoints alert alert-info hover  col-md-10">
+    <div class="endpoints_container" v-for="(endpoint, index) in getAllEndPoints" :key="endpoint.id">
+      <div @click="singleEndPoint(endpoint.id, endpoint.author)" class="endpoints alert alert-info hover col-md-10">
         <span class="endpoint_type">{{endpoint.requestMethod.toUpperCase()}}</span>{{endpoint.endpointPath}}
       </div>
       <div class="col-md-2">
-        <button type="button" class="btn btn-warning btn-lg" @click="subscribe(endpoint.id)">Subscribe</button>
+        <button type="button" class="btn btn-warning btn-lg" @click="subscribe(endpoint.id)" v-if="getAllEndPoints[0].author!=true&&getAllEndPoints[index].subscribed==false">Subscribe</button>
       </div>
     </div>
     <!-- Endpoint Modal -->

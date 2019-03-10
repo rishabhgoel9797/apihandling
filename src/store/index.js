@@ -22,7 +22,8 @@ const state = {
   endpointResponse: {},
   orgUsers: [],
   endpointRequest: {},
-  notification: {}
+  notification: {},
+  favouriteList: []
 }
 const getters = {
   getUser (state) {
@@ -54,6 +55,9 @@ const getters = {
   },
   getAllNotifications (state) {
     return state.notification
+  },
+  getFavouriteList (state) {
+    return state.favouriteList
   }
 }
 const actions = {
@@ -290,6 +294,39 @@ const actions = {
     }, (error) => {
       failure(error)
     }, request)
+  },
+  unSubscription  ({commit}, {request, success, failure}) {
+    console.log('data is ', request)
+    subscribeService.remove((res) => {
+      let data = res.body.response
+      console.log('data ', data)
+      alert('You are successfully removed from this endpoint. You will no longer receive notifications for this.')
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
+  },
+  getPathsFavourite ({commit}, {request, success, failure}) {
+    console.log('data is ', request)
+    watchService.getPaths((res) => {
+      let data = res.body.response
+      commit('setFavList', {data})
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
+  },
+  removeFav  ({commit}, {request, success, failure}) {
+    console.log('data is ', request)
+    watchService.deletePath((res) => {
+      let data = res.body.response
+      console.log('data ', data)
+      alert('You are successfully removed from this attribute. You will no longer receive notifications for this.')
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request)
   }
 }
 const mutations = {
@@ -331,6 +368,9 @@ const mutations = {
   },
   setNotification (state, {data}) {
     state.notification = data
+  },
+  setFavList (state, {data}) {
+    state.favouriteList = data
   }
 }
 export default new Vuex.Store({

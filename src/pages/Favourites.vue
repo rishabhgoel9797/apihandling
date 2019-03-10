@@ -4,6 +4,12 @@
     <h3>Click on End Point to make it Favourite<i class="fa fa-star favourite-star" aria-hidden="true"></i></h3>
       <button type="button" class="btn btn-primary pull-right" @click="subscribeFunc()">Subscribe</button>
      <div id="favourite"></div>
+     <div class="list" v-if="getFavouriteList.length>0">
+       <h3>Already Subscribed Attributes </h3><small><b>*(Click to unsubscribe)*</b></small>
+       <ul>
+         <div v-for="list in getFavouriteList" :key="list.responseId"><a href="#" v-if="list.endPointId===$route.params.endpointId" @click="unsubscribeFav(list.attributePath)">{{list.attributePath}}</a></div>
+       </ul>
+     </div>
      <div id="points">
      </div>
   </div>

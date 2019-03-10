@@ -9,7 +9,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getFavourite']),
+    ...mapGetters(['getFavourite', 'getFavouriteList']),
     initilization () {
       if (this.getFavourite) {
         this.getJsonData()
@@ -18,6 +18,7 @@ export default {
   },
   created () {
     this.fetchResponse()
+    this.getListOfPaths()
   },
   methods: {
     json2html (json) {
@@ -82,6 +83,16 @@ export default {
       let endpointId = this.$route.params.endpointId
       let request = {request: {endPointId: endpointId, fragmentPath: this.paths, subscriberId: localStorage.getItem('userId')}, tokenId: localStorage.getItem('emailId')}
       this.$store.dispatch('subscribe', {request})
+    },
+    getListOfPaths () {
+      let endpointId = this.$route.params.endpointId
+      let request = {request: {endPointId: endpointId, subscriberId: localStorage.getItem('userId')}, tokenId: localStorage.getItem('emailId')}
+      this.$store.dispatch('getPathsFavourite', {request})
+    },
+    unsubscribeFav (fragPath) {
+      let endpointId = this.$route.params.endpointId
+      let request = {request: {endPointId: endpointId, fragmentPath: fragPath, subscriberId: localStorage.getItem('userId')}, tokenId: localStorage.getItem('emailId')}
+      this.$store.dispatch('removeFav', {request})
     }
   }
 }

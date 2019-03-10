@@ -142,7 +142,7 @@ const actions = {
   },
   updateRequest ({commit}, {request, success, failure, paramsType, endpointId}) {
     console.log('data is ', request)
-    endPointRequestService.getRequest((res) => {
+    endPointRequestService.updateRequest((res) => {
       let data = res.body.response
       console.log('data ', data)
       success(res)
@@ -257,6 +257,17 @@ const actions = {
     }, (error) => {
       failure(error)
     }, request)
+  },
+  publishRequest ({commit}, {request, success, failure, endpointId}) {
+    console.log('data is ', request)
+    endPointRequestService.publishRequest((res) => {
+      console.log('response is ', res)
+      let data = res.body.response
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request, endpointId)
   },
   getNotification ({commit}, {request, success, failure}) {
     console.log('data is ', request)

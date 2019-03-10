@@ -1,5 +1,15 @@
 <template>
   <div class="container">
+    <button
+        type="button"
+        class="btn btn-primary pull-right"
+        data-toggle="modal"
+        data-target="#swaggerModal"
+        v-if="author==='true' && getAllEndPoints.length==0"
+      >
+        <i class="fa fa-plus add" aria-hidden="true"></i>
+        Import From Swagger
+      </button>
     <h1 class="error" v-if="getAllEndPoints.length==0">No EndPoints Available</h1>
     <div v-else class="projectName">
       {{getAllEndPoints[0].project.projectName}}

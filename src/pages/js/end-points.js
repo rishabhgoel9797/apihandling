@@ -10,7 +10,8 @@ export default {
       ],
       projectId: this.$route.params.projectId,
       requestType: '',
-      url: ''
+      url: '',
+      author: localStorage.getItem('author')
     }
   },
   created () {

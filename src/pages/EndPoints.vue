@@ -39,7 +39,7 @@
       <div class="endpoints alert alert-info hover col-md-10">
         <span class="endpoint_type">{{endpoint.requestMethod.toUpperCase()}}</span>{{endpoint.endpointPath}}
         <div class="req_res_buttons pull-right">
-          <button type="button" class="btn btn-success" v-if="getAllEndPoints[0].author!=true">Request</button>
+          <button type="button" class="btn btn-success" v-if="getAllEndPoints[0].author!=true" @click="reqVersions(endpoint.id, endpoint.author)">Request</button>
           <button type="button" class="btn btn-primary" v-if="getAllEndPoints[0].author!=true" @click="singleEndPoint(endpoint.id, endpoint.author)">Response</button>
           <button type="button" class="btn btn-warning" v-if="getAllEndPoints[0].author===true" @click="singleEndPoint(endpoint.id, endpoint.author)">Update</button>
         </div>

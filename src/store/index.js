@@ -23,7 +23,8 @@ const state = {
   orgUsers: [],
   endpointRequest: {},
   notification: {},
-  favouriteList: []
+  favouriteList: [],
+  versions: {}
 }
 const getters = {
   getUser (state) {
@@ -58,6 +59,9 @@ const getters = {
   },
   getFavouriteList (state) {
     return state.favouriteList
+  },
+  getVersions (state) {
+    return state.versions
   }
 }
 const actions = {
@@ -327,6 +331,17 @@ const actions = {
     }, (error) => {
       failure(error)
     }, request)
+  },
+  showVersions ({commit}, {request, success, failure, endpointId, userId}) {
+    console.log('data is ', request)
+    endPointRequestService.versioning((res) => {
+      let data = res.body.response
+      commit('setVersions', {data})
+      console.log('data ', data)
+      success(res)
+    }, (error) => {
+      failure(error)
+    }, request, endpointId, userId)
   }
 }
 const mutations = {
@@ -371,6 +386,9 @@ const mutations = {
   },
   setFavList (state, {data}) {
     state.favouriteList = data
+  },
+  setVersions (state, {data}) {
+    state.versions = data
   }
 }
 export default new Vuex.Store({

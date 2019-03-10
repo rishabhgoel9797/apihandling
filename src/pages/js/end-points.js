@@ -49,6 +49,9 @@ export default {
     swaggerImport () {
       let request = {request: {projectId: this.projectId, url: this.url, userId: localStorage.getItem('userId')}, tokenId: localStorage.getItem('userId')}
       this.$store.dispatch('swagger', {request})
+    },
+    reqVersions (endpointId, author) {
+      router.push('/requestsVer/' + endpointId)
     }
   }
 }

@@ -4,7 +4,8 @@ const apiPath = {
   create_endpointrequest: '/endpointRequest/',
   get_endpointrequest: '/endpointRequest/get/',
   update_endpointrequest: '/endpointRequest/',
-  publish_request: '/endpointRequest/publish/'
+  publish_request: '/endpointRequest/publish/',
+  version: '/endpointRequest/getByUserId/'
 }
 
 const endPointRequestService = {
@@ -23,6 +24,9 @@ const endPointRequestService = {
   publishRequest (callback, errHandler, userObj, endpointId) {
     console.log('publishRequest', {userObj, endpointId})
     commonApi.postDataViaApi(apiPath.publish_request + endpointId, userObj, callback, errHandler)
+  },
+  versioning (callback, errHandler, userObj, endpointId, userId) {
+    commonApi.postDataViaApi(apiPath.version + endpointId + '/' + userId, userObj, callback, errHandler)
   }
 }
 

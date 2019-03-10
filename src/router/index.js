@@ -10,6 +10,7 @@ import CreatePoint from '@/pages/CreatePoint'
 import Favourites from '@/pages/Favourites'
 import UpdatePoint from '@/pages/UpdatePoint'
 import Notification from '@/pages/Notification'
+import RequestVer from '@/pages/RequestVer'
 
 Vue.use(Router)
 
@@ -54,6 +55,10 @@ export default new Router({
     {
       path: '/updateEndPoint/:endpointId',
       component: UpdatePoint
+    },
+    {
+      path: '/requestsVer/:endpointId',
+      component: RequestVer
     }
   ],
   mode: 'history'
